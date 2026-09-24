@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Liwan Mall Funding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&display=swap">
+<style>
+:root{
+  --band:#0F4430; --band-ink:#F4F2EA; --band-soft:#BFD5C9;
+  --ground:#F3F4F0; --surface:#FFFFFF; --surface-2:#E6EFE9;
+  --ink:#10281F; --ink-soft:#4E6258; --line:#DCE3DE;
+  --gold:#C9A227; --gold-ink:#8A6A10; --gold-fill:#D4AF37;
+  --paid:#2E8B57; --sched:#8F97A3; --sched-ink:#FFFFFF;
+  --head:#0A3A28; --shadow:0 2px 10px rgba(15,68,48,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --band:#0B3324; --band-ink:#EEF1EC; --band-soft:#9FBBAC;
+    --ground:#0F1714; --surface:#16211C; --surface-2:#1C2D25;
+    --ink:#E6ECE8; --ink-soft:#A3B3AA; --line:#2A3A33;
+    --gold:#D9B64A; --gold-ink:#E2C15A; --gold-fill:#D4AF37;
+    --paid:#3FA76D; --sched:#5B636E; --sched-ink:#EEF1EC;
+    --head:#0B3324; --shadow:0 2px 10px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --band:#0B3324; --band-ink:#EEF1EC; --band-soft:#9FBBAC;
+  --ground:#0F1714; --surface:#16211C; --surface-2:#1C2D25;
+  --ink:#E6ECE8; --ink-soft:#A3B3AA; --line:#2A3A33;
+  --gold:#D9B64A; --gold-ink:#E2C15A; --gold-fill:#D4AF37;
+  --paid:#3FA76D; --sched:#5B636E; --sched-ink:#EEF1EC;
+  --head:#0B3324; --shadow:0 2px 10px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:24px}
+header{background:var(--band);color:var(--band-ink);padding-block:32px 0}
+.brand{font-size:13px;font-weight:700;letter-spacing:.28em;color:var(--gold-fill);text-transform:uppercase}
+h1{font-size:clamp(26px,4vw,36px);font-weight:800;margin:6px 0 4px;text-wrap:balance}
+.meta{color:var(--band-soft);font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{font:inherit;font-size:14px;color:var(--band-ink);background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:7px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:rgba(255,255,255,.08)}
+.btn.primary{border-color:var(--gold-fill);color:var(--gold-fill);font-weight:700}
+.btn[aria-pressed="true"]{background:rgba(255,255,255,.14)}
+.btn:focus-visible,.pill:focus-visible,.chip:focus-visible,.grp:focus-visible{outline:2px solid var(--gold-fill);outline-offset:2px}
+.tabs{display:flex;gap:28px;margin-top:22px}
+.tab{padding:10px 2px 12px;font-weight:700;border-bottom:3px solid var(--gold-fill)}
+main{padding-block:28px 48px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 20px;border-bottom:2px solid var(--gold);padding-bottom:10px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--gold-ink);text-transform:uppercase}
+h2{font-size:clamp(20px,3vw,26px);font-weight:800;margin:0;color:var(--ink)}
+.lede{color:var(--ink-soft);margin:14px 0 18px;max-width:80ch}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.kpi{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:16px 18px;border-left:4px solid var(--band)}
+.kpi.gold{border-left-color:var(--gold)}
+.kpi.green{border-left-color:var(--paid)}
+.kpi .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.kpi .val{font-size:22px;font-weight:800;margin:6px 0 2px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.kpi .sub{font-size:13px;color:var(--ink-soft)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.panel{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:20px 22px}
+h3{font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px;color:var(--ink)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{background:var(--head);color:#F4F2EA;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:11px 14px;white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line)}
+.num{text-align:right}
+tr.total td{font-weight:800;background:var(--surface-2);border-top:2px solid var(--band)}
+.bar{display:flex;height:32px;border-radius:6px;overflow:hidden;font-size:13px;font-weight:700}
+.bar span{display:flex;align-items:center;justify-content:center;white-space:nowrap;padding:0 10px}
+.bar .a{background:var(--paid);color:#fff}
+.bar .b{background:var(--head);color:#F4F2EA;flex:1}
+.note{font-size:13px;color:var(--ink-soft);margin-top:8px}
+.prog{height:14px;border-radius:7px;background:var(--line);overflow:hidden;margin-top:4px}
+.prog i{display:block;height:100%;background:var(--paid);min-width:0}
+.block{margin-top:22px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:12px;font-weight:700;border:0;border-radius:5px;padding:8px 0;width:58px;cursor:pointer;color:var(--sched-ink);background:var(--sched);position:relative}
+.chip.paid{background:var(--paid);color:#fff}
+.chip.next{background:var(--gold-fill);color:#10281F}
+.chip.sel{box-shadow:0 0 0 2px var(--ground),0 0 0 4px var(--ink)}
+.legend{display:flex;gap:8px;margin-top:10px}
+.tag{font-size:12px;font-weight:700;border-radius:20px;padding:2px 10px;color:#fff;background:var(--sched);white-space:nowrap}
+.tag.paid{background:var(--paid)}
+.tag.next{background:var(--gold-fill);color:#10281F}
+.tag.cap{background:var(--band);color:#F4F2EA}
+.tip{position:fixed;z-index:10;pointer-events:none;background:var(--ink);color:var(--ground);font-size:13px;border-radius:6px;padding:8px 10px;line-height:1.4;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pill{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--ink-soft);color:var(--ink);background:transparent;border-radius:20px;padding:4px 14px;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--band);color:#F4F2EA;border-color:var(--band)}
+tr.grp td{background:var(--surface-2);font-weight:800;color:var(--ink);cursor:pointer}
+tr.grp .caret{display:inline-block;width:14px;transition:transform .15s}
+tr.grp.closed .caret{transform:rotate(-90deg)}
+tr.hl td{background:rgba(212,175,55,.18)}
+.empty{padding:18px 14px;color:var(--ink-soft)}
+footer{color:var(--ink-soft);font-size:13px;margin-top:22px}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}}
+@media (max-width:460px){.kpis{grid-template-columns:1fr}.chip{width:calc((100% - 18px)/4)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>
+body{margin:0}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.logo{height:84px;width:auto;flex:none}
+@media (max-width:640px){.logo{height:56px}}
+@media print{
+  @page{size:A4;margin:10mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:12px}
+  .actions,.tip,.pills{display:none!important}
+  .panel,.kpi{box-shadow:none;border:1px solid #DCE3DE}
+  .block,.grid2{break-inside:avoid}
+  tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap">
+    <div class="hdr">
+      <div>
+        <div class="brand">Key Mavens Group</div>
+        <h1>Liwan Mall — Commercial Funding</h1>
+        <div class="meta">Reporting date: 23 September 2026 &nbsp;|&nbsp; Currency: AED &nbsp;|&nbsp; Liwan, Dubailand</div>
+      </div>
+      <img class="logo" src="https://waleedtammamwrwr-netizen.github.io/keymavens-report/kmglogo.png" alt="Key Mavens Group">
+    </div>
+    <div class="actions">
+      <button class="btn" id="unitBtn" type="button" aria-pressed="false">Show in millions</button>
+      <button class="btn" id="printBtn" type="button">Print / PDF</button>
+      <button class="btn" id="dlBtn" type="button">Download Report</button>
+      <a class="btn primary" href="https://drive.google.com/file/d/1jcO6wSDuTq8krZDhz95gFTxVVVGH_ync/view?usp=drive_link" target="_blank" rel="noopener">View Valuation Report ↗</a>
+    </div>
+    <div class="tabs"><span class="tab">Liwan Mall</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Liwan Mall</span>
+    <h2>Commercial Investment Return Profile</h2>
+  </div>
+  <p class="lede">Funding received November 2026. A five-year commercial plan at 20% per annum, with profit paid quarterly from February 2027 and capital returned at the end of the term (November 2031).</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Valuation today</div><div class="val" data-amt="106000000"></div><div class="sub">Before project completion</div></div>
+    <div class="kpi"><div class="lab">Annual revenue</div><div class="val" data-amt="11500000"></div><div class="sub">Annual income from the mall</div></div>
+    <div class="kpi gold"><div class="lab">Funding required</div><div class="val" data-amt="64225000"></div><div class="sub">Received Nov 2026 · 61% of today's value</div></div>
+    <div class="kpi gold"><div class="lab">Planned profit – 20% × 5 years</div><div class="val" data-amt="64225000"></div><div class="sub">Gross value <span data-amt="128450000"></span></div></div>
+    <div class="kpi"><div class="lab">Quarterly planned amount</div><div class="val" data-amt="3211250"></div><div class="sub">Annual <span data-amt="12845000"></span></div></div>
+    <div class="kpi green"><div class="lab">Paid to date</div><div class="val" id="paidVal"></div><div class="sub" id="paidSub"></div></div>
+    <div class="kpi gold"><div class="lab">Next payment</div><div class="val" data-amt="3211250"></div><div class="sub" id="nextSub"></div></div>
+    <div class="kpi"><div class="lab">Expected profits to be earned</div><div class="val" id="remVal"></div><div class="sub" id="remSub"></div></div>
+  </div>
+
+  <div class="grid2">
+    <section class="panel">
+      <h3>Five-year value plan</h3>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Item</th><th class="num">Amount (AED)</th><th class="num">%</th></tr></thead>
+          <tbody>
+            <tr><td>Liwan Mall – funding</td><td class="num" data-amt="64225000"></td><td class="num">100%</td></tr>
+            <tr><td>Profits – 20% annual, 5 years</td><td class="num" data-amt="64225000"></td><td class="num">100%</td></tr>
+            <tr class="total"><td>Total</td><td class="num" data-amt="128450000"></td><td class="num">200%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>Profit composition at reporting date</h3>
+      <div class="bar" id="compBar"><span class="a" id="compA"></span><span class="b" id="compB"></span></div>
+      <p class="note" id="compNote"></p>
+      <h3 style="margin-top:20px">Plan progress</h3>
+      <div class="prog"><i id="progBar"></i></div>
+      <p class="note" id="progNote"></p>
+    </section>
+  </div>
+
+  <section class="panel block">
+    <h3>20-quarter payment timeline <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink-soft)">(hover for details, click to filter table)</span></h3>
+    <div class="chips" id="chips"></div>
+    <div class="legend"><span class="tag paid">Paid</span><span class="tag next">Next</span><span class="tag">Scheduled</span></div>
+  </section>
+
+  <section class="panel block">
+    <h3>Quarterly profit schedule</h3>
+    <div class="pills" id="pills" role="group" aria-label="Filter schedule"></div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Year</th><th>Quarter</th><th>Due</th><th class="num">Amount (AED)</th><th class="num">Cumulative (AED)</th><th>Status</th></tr></thead>
+        <tbody id="sched"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Figures in AED. Payments count as paid only once received; status is set by the number of quarters recorded as paid (currently 0). Capital return timing is assumed at the end of the term, matching the Villa Mall facility.</footer>
+</main>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+  const Q = 3211250, CAP = 64225000, PAID = 0; // quarters received so far
+  const MONTHS = ["Feb","May","Aug","Nov"];
+  const YEARS = ["First Year","Second Year","Third Year","Fourth Year","Fifth Year"];
+  let millions = false, filter = "all", selected = null;
+  const closed = new Set();
+
+  const rows = [];
+  for (let n = 1; n <= 20; n++) {
+    const y = Math.ceil(n / 4), q = (n - 1) % 4 + 1;
+    rows.push({ n, y, q, label: "Profit Q" + q, due: MONTHS[q - 1] + " " + (2026 + y), amt: Q, cum: Q * n,
+      status: n <= PAID ? "paid" : n === PAID + 1 ? "next" : "sched" });
+  }
+
+  function fmt(v){
+    if (millions) return (v / 1e6).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 3 }) + "M";
+    return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function aed(v){ return "AED " + fmt(v); }
+  const statusText = { paid: "Paid", next: "Next", sched: "Scheduled" };
+
+  function renderStatic(){
+    document.querySelectorAll("[data-amt]").forEach(el => {
+      const v = +el.dataset.amt;
+      el.textContent = el.tagName === "TD" ? fmt(v) : aed(v);
+    });
+    const paid = PAID * Q, rem = 20 * Q - paid, next = rows[PAID];
+    document.getElementById("paidVal").textContent = aed(paid);
+    document.getElementById("paidSub").textContent = PAID + " of 20 quarters";
+    document.getElementById("nextSub").textContent = next ? next.due + " · Year " + next.y + " Q" + next.q : "Plan complete";
+    document.getElementById("remVal").textContent = aed(rem);
+    document.getElementById("remSub").textContent = (20 - PAID) + " quarters remaining";
+    const pct = PAID / 20 * 100;
+    const a = document.getElementById("compA");
+    a.style.width = pct + "%"; a.textContent = pct ? "Paid " + pct + "%" : ""; a.hidden = !pct;
+    document.getElementById("compB").textContent = "Expected " + (100 - pct) + "%";
+    document.getElementById("compNote").textContent = "Paid vs expected profits to be earned – total " + aed(20 * Q);
+    document.getElementById("progBar").style.width = pct + "%";
+    document.getElementById("progNote").textContent = PAID + " of 20 quarterly payments received (" + pct + "%) · first payment Feb 2027";
+  }
+
+  const tip = document.getElementById("tip");
+  function renderChips(){
+    const box = document.getElementById("chips"); box.innerHTML = "";
+    rows.forEach(r => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip " + (r.status === "paid" ? "paid" : r.status === "next" ? "next" : "") + (selected === r.n ? " sel" : "");
+      b.textContent = "Y" + r.y + "Q" + r.q;
+      b.setAttribute("aria-label", "Year " + r.y + " quarter " + r.q + ", due " + r.due + ", " + statusText[r.status]);
+      b.addEventListener("mouseenter", e => {
+        tip.innerHTML = "<b>Y" + r.y + "Q" + r.q + " · " + r.due + "</b><br>Amount: " + aed(r.amt) + "<br>Cumulative: " + aed(r.cum) + "<br>Status: " + statusText[r.status];
+        tip.hidden = false; moveTip(e);
+      });
+      b.addEventListener("mousemove", moveTip);
+      b.addEventListener("mouseleave", () => tip.hidden = true);
+      b.addEventListener("click", () => {
+        selected = selected === r.n ? null : r.n;
+        filter = selected ? "y" + r.y : "all";
+        closed.delete(r.y);
+        renderAll();
+        document.getElementById("sched").querySelector("tr.hl")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      });
+      box.appendChild(b);
+    });
+  }
+  function moveTip(e){
+    const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + "px"; tip.style.top = (e.clientY + 16) + "px";
+  }
+
+  function renderPills(){
+    const opts = [["all","All"],["paid","Paid"],["remaining","Remaining"],["y1","Year 1"],["y2","Year 2"],["y3","Year 3"],["y4","Year 4"],["y5","Year 5"]];
+    const box = document.getElementById("pills"); box.innerHTML = "";
+    opts.forEach(([k, t]) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "pill"; b.textContent = t;
+      b.setAttribute("aria-pressed", filter === k);
+      b.addEventListener("click", () => { filter = k; selected = null; renderAll(); });
+      box.appendChild(b);
+    });
+  }
+
+  function keep(r){
+    if (filter === "all") return true;
+    if (filter === "paid") return r.status === "paid";
+    if (filter === "remaining") return r.status !== "paid";
+    return filter === "y" + r.y;
+  }
+
+  function renderTable(){
+    const tb = document.getElementById("sched"); tb.innerHTML = "";
+    let shown = 0;
+    for (let y = 1; y <= 5; y++) {
+      const list = rows.filter(r => r.y === y && keep(r));
+      if (!list.length) continue;
+      const g = document.createElement("tr");
+      g.className = "grp" + (closed.has(y) ? " closed" : "");
+      g.tabIndex = 0;
+      g.innerHTML = '<td colspan="6"><span class="caret">▾</span> ' + YEARS[y - 1] + '</td>';
+      const toggle = () => { closed.has(y) ? closed.delete(y) : closed.add(y); renderTable(); };
+      g.addEventListener("click", toggle);
+      g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+      tb.appendChild(g);
+      if (closed.has(y)) continue;
+      list.forEach(r => {
+        shown++;
+        const tr = document.createElement("tr");
+        if (selected === r.n) tr.className = "hl";
+        tr.innerHTML = "<td></td><td>" + r.label + "</td><td>" + r.due + "</td><td class='num'>(" + fmt(r.amt) + ")</td><td class='num'>" + fmt(r.cum) + "</td><td><span class='tag " + (r.status === "sched" ? "" : r.status) + "'>" + statusText[r.status] + "</span></td>";
+        tb.appendChild(tr);
+      });
+    }
+    if (filter === "all" || filter === "remaining" || filter === "y5") {
+      const g = document.createElement("tr"); g.className = "grp";
+      g.innerHTML = '<td colspan="6">Capital</td>'; tb.appendChild(g);
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td></td><td>Capital return</td><td>Nov 2031</td><td class='num'>(" + fmt(CAP) + ")</td><td class='num'>" + fmt(20 * Q + CAP) + "</td><td><span class='tag cap'>End of term</span></td>";
+      tb.appendChild(tr);
+      shown++;
+    }
+    if (filter === "all") {
+      const tr = document.createElement("tr"); tr.className = "total";
+      tr.innerHTML = "<td>Total</td><td>20 payments + capital</td><td></td><td class='num'>(" + fmt(20 * Q + CAP) + ")</td><td class='num'>200%</td><td></td>";
+      tb.appendChild(tr);
+    }
+    if (!shown && !tb.children.length) {
+      tb.innerHTML = "<tr><td colspan='6' class='empty'>No payments received yet – the first payment is due February 2027.</td></tr>";
+    }
+  }
+
+  function renderAll(){ renderStatic(); renderChips(); renderPills(); renderTable(); }
+
+  document.getElementById("unitBtn").addEventListener("click", e => {
+    millions = !millions;
+    e.currentTarget.setAttribute("aria-pressed", millions);
+    e.currentTarget.textContent = millions ? "Show full amounts" : "Show in millions";
+    renderAll();
+  });
+
+  document.getElementById("printBtn").addEventListener("click", () => {
+    filter = "all"; selected = null; closed.clear(); renderAll();
+    window.print();
+  });
+
+  document.getElementById("dlBtn").addEventListener("click", async () => {
+    let html;
+    try { html = await (await fetch(location.href, { cache: "no-store" })).text(); }
+    catch (e) { html = "<!doctype html>\n" + document.documentElement.outerHTML; }
+    const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = "Liwan-Mall-Report.html";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>
